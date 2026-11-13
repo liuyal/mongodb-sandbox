@@ -1,0 +1,14 @@
+services:
+  mongodb-app:
+    build:
+      context: .
+      dockerfile: dockerfile_mongodb
+    image: mongodb-app:latest
+    container_name: mongodb-app
+    restart: unless-stopped
+    mem_limit: 1g
+    command: ["mongod", "--wiredTigerCacheSizeGB", "0.5"]
+    ports:
+      - "27017:27017"
+    volumes:
+      - /datadrive/mongodb:/data/db
